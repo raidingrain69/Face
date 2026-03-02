@@ -19,6 +19,24 @@ Restrict access to any `.exe` until your face is authenticated via webcam — no
 
 ---
 
+## Recent Changes
+
+### UI Overhaul
+The dashboard and all dialogs have been redesigned with a new high-contrast Catppuccin-inspired dark theme:
+
+- **Buttons** are now clearly distinguishable — primary actions use vibrant purple (`#7c3aed`), destructive actions use bright red (`#ef4444`), and secondary actions use neutral gray.
+- **Progress bars** and **status labels** use distinct accent colours so feedback is immediately readable.
+- Tab headers, form fields, and table rows all have improved contrast against the dark background.
+
+### Face Registration Fix
+The face-capture flow in the **Register Face** dialog has been hardened:
+
+- **Thread-safety**: `lastFrame` (the most recent webcam frame held for snapshotting) is now accessed under a lock, eliminating a race condition where the background capture thread could release the Mat while the UI thread was cloning it — causing silent failures when the Capture button was pressed.
+- **Engine error feedback**: If the face-recognition engine fails to initialise (e.g. Haar cascade XML not found), the dialog now shows the error in the progress label and disables the Capture button instead of silently proceeding and crashing on first capture.
+- **Null-safe detector**: `FaceRecognitionEngine.detectFaces()` now returns an empty list immediately when the detector is `null` or not loaded, preventing a NullPointerException that would otherwise swallow capture attempts.
+
+---
+
 ## Directory Structure
 
 ```
@@ -66,8 +84,8 @@ FaceUnlocker/
 
 1. **Detection** — `CascadeClassifier` with the Haar frontal-face cascade detects faces in each BGR frame.  
 2. **Pre-processing** — Detected region is converted to greyscale and resized to 100 × 100 px.  
-3. **Recognition** — A normalised greyscale histogram is computed for the face region using `Imgproc.calcHist()`. The mean histogram correlation (via `Imgproc.compareHist()` / `HISTCMP_CORREL`) across all stored training histograms is computed; a mean correlation ≥ 0.75 is treated as a match. This approach uses only the core OpenCV module (no `opencv_contrib` / `face` module required) and runs entirely on-device.  
-4. **Persistence** — Training images are saved as PNG files in `%APPDATA%\FaceUnlocker\samples\` and re-loaded at startup to rebuild the histogram set.
+3. **Recognition** — The LBPH (`LBPHFaceRecognizer`) model is trained on the pre-processed face images. At recognition time the model predicts a label and a confidence (distance) score; a score below **80** is treated as a successful match. *(Note: earlier documentation incorrectly described a histogram-correlation approach — the implementation has always used LBPH.)*  
+4. **Persistence** — Training images are saved as PNG files in `%APPDATA%\FaceUnlocker\samples\` and the trained model is saved as `face_model.yml`. Both are re-loaded at startup so registration survives restarts.
 
 ### Windows Process Monitor (`monitor/`)
 
@@ -110,7 +128,7 @@ FaceUnlocker/
 
 ```bash
 git clone https://github.com/raidingrain69/Face.git
-cd face-unlocker
+cd Face
 mvn clean package -DskipTests
 ```
 
@@ -172,6 +190,18 @@ makensis installer.nsi
 ```
 
 Output: `installer/FaceUnlocker-Setup-1.0.0.exe`
+
+---
+
+## Face Registration – Step by Step
+
+1. Open the dashboard and navigate to the **📷 Face Registration** tab.
+2. Click **📷 Register Face** — a dialog opens with a live webcam preview.
+3. Look directly at the camera and click **📸 Capture**. Repeat from slightly different angles.
+4. After **20 captures** the **Train Model** button becomes active — click it to train and save the LBPH model.
+5. The stats label on the tab updates to show the sample count and "Model trained: Yes ✓".
+
+If the camera is unavailable (no webcam detected) or the recognition engine fails to initialise, the **Capture** button is automatically disabled and the reason is shown in the dialog.
 
 ---
 

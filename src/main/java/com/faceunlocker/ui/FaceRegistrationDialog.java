@@ -46,7 +46,9 @@ public class FaceRegistrationDialog extends Dialog<Void> {
     private ProgressBar progressBar;
 
     private final AtomicInteger capturedCount = new AtomicInteger(0);
-    private volatile Mat        lastFrame     = null;
+    private final Object        frameLock     = new Object();
+    private Mat                 lastFrame     = null;
+    private boolean             engineReady   = false;
 
     public FaceRegistrationDialog(Stage owner, ConfigManager configManager) {
         this.configManager = configManager;
@@ -129,31 +131,42 @@ public class FaceRegistrationDialog extends Dialog<Void> {
     private void startCamera() {
         try {
             engine.initialize();
+            engineReady = true;
         } catch (IOException e) {
             log.error("Engine init failed", e);
+            Platform.runLater(() -> {
+                captureBtn.setDisable(true);
+                progressLabel.setText("Engine init failed – " + e.getMessage());
+            });
         }
 
         camera.setImageCallback(img -> Platform.runLater(() -> preview.setImage(img)));
         try {
             camera.startCapture(frame -> {
-                // Keep the latest frame available for capture
-                if (lastFrame != null) {
-                    lastFrame.release();
+                // Keep the latest frame available for capture (thread-safe)
+                synchronized (frameLock) {
+                    if (lastFrame != null) {
+                        lastFrame.release();
+                    }
+                    lastFrame = frame.clone();
                 }
-                lastFrame = frame.clone();
             });
         } catch (Exception e) {
             log.warn("Camera unavailable: {}", e.getMessage());
-            Platform.runLater(() ->
-                captureBtn.setText("Camera unavailable"));
+            Platform.runLater(() -> {
+                captureBtn.setDisable(true);
+                captureBtn.setText("Camera unavailable");
+            });
         }
     }
 
     private void stopCamera() {
         camera.stopCapture();
-        if (lastFrame != null) {
-            lastFrame.release();
-            lastFrame = null;
+        synchronized (frameLock) {
+            if (lastFrame != null) {
+                lastFrame.release();
+                lastFrame = null;
+            }
         }
     }
 
@@ -162,11 +175,18 @@ public class FaceRegistrationDialog extends Dialog<Void> {
     // -----------------------------------------------------------------------
 
     private void captureFrame() {
-        Mat frame = lastFrame;
-        if (frame == null) {
+        if (!engineReady) {
             return;
         }
-        Mat face = engine.extractFirstFace(frame.clone());
+        Mat frameCopy;
+        synchronized (frameLock) {
+            if (lastFrame == null) {
+                return;
+            }
+            frameCopy = lastFrame.clone();
+        }
+        Mat face = engine.extractFirstFace(frameCopy);
+        frameCopy.release(); // caller owns frameCopy; extractFirstFace does not release it
         if (face == null) {
             Platform.runLater(() -> progressLabel.setText(
                     "No face detected – try again"));
