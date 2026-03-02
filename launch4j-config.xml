@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Launch4j configuration
+  Wraps the fat JAR into a native Windows .exe with its own JRE.
+
+  Usage:
+    launch4j launch4j-config.xml
+  Or via Maven (launch4j-maven-plugin):
+    mvn launch4j:launch4j
+
+  The resulting FaceUnlocker.exe is then packaged by NSIS.
+-->
+<launch4jConfig>
+
+  <!-- Output .exe path -->
+  <outfile>target/FaceUnlocker.exe</outfile>
+
+  <!-- Fat JAR to wrap -->
+  <jar>target/face-unlocker-1.0.0-jar-with-dependencies.jar</jar>
+
+  <!-- Keep the process running in the background (no console window) -->
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <errTitle>AI Face Unlocker – Error</errTitle>
+
+  <!-- Windows version info block -->
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0.0</txtFileVersion>
+    <fileDescription>AI Face Unlocker</fileDescription>
+    <copyright>Copyright 2024</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>1.0.0</txtProductVersion>
+    <productName>AI Face Unlocker</productName>
+    <companyName>Your Company</companyName>
+    <internalName>FaceUnlocker</internalName>
+    <originalFilename>FaceUnlocker.exe</originalFilename>
+  </versionInfo>
+
+  <!-- Icon -->
+  <icon>src/main/resources/icons/app-icon.ico</icon>
+
+  <!-- JRE search: first look for a bundled JRE next to the .exe,
+       then fall back to the system JAVA_HOME -->
+  <jre>
+    <path>jre</path>
+    <minVersion>17</minVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64</runtimeBits>
+  </jre>
+
+  <!-- JVM arguments for JavaFX modules and OpenCV native lib loading -->
+  <jvmArgs>
+    <arg>--add-opens</arg><arg>java.base/java.lang=ALL-UNNAMED</arg>
+    <arg>--add-opens</arg><arg>java.desktop/sun.awt=ALL-UNNAMED</arg>
+    <arg>-Djava.awt.headless=false</arg>
+    <arg>-Xms64m</arg>
+    <arg>-Xmx512m</arg>
+  </jvmArgs>
+
+  <classPath>
+    <mainClass>com.faceunlocker.Main</mainClass>
+  </classPath>
+
+  <!-- Single-instance enforcement: only one copy may run at a time -->
+  <singleInstance>
+    <mutexName>AiFaceUnlocker_SingleInstance</mutexName>
+    <windowTitle>AI Face Unlocker</windowTitle>
+  </singleInstance>
+
+  <!-- Splash screen (optional – comment out if not using) -->
+  <!--
+  <splash>
+    <file>src/main/resources/icons/splash.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>false</timeoutErr>
+  </splash>
+  -->
+
+</launch4jConfig>

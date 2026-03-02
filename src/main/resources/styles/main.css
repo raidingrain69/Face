@@ -1,0 +1,247 @@
+/* =========================================================
+   AI Face Unlocker – Main Stylesheet
+   Dark-theme with blue accents
+   ========================================================= */
+
+/* Root / body */
+.root {
+    -fx-background-color: #1a1a2e;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* ---- Dashboard ----------------------------------------- */
+.dashboard-root {
+    -fx-background-color: #1a1a2e;
+}
+
+.header {
+    -fx-background-color: #16213e;
+    -fx-border-color: transparent transparent #0f3460 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.header-title {
+    -fx-fill: #e94560;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.header-subtitle {
+    -fx-fill: #7f8c8d;
+    -fx-font-size: 12px;
+}
+
+/* ---- Tab pane ------------------------------------------ */
+.main-tabs {
+    -fx-background-color: #1a1a2e;
+    -fx-tab-min-width: 180px;
+}
+
+.main-tabs .tab-header-area .tab-header-background {
+    -fx-background-color: #16213e;
+}
+
+.main-tabs .tab {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #a0a0b0;
+    -fx-font-size: 13px;
+    -fx-padding: 8 16 8 16;
+}
+
+.main-tabs .tab:selected {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #ffffff;
+}
+
+.main-tabs .tab-content-area {
+    -fx-background-color: #1a1a2e;
+}
+
+/* ---- Tab content -------------------------------------- */
+.tab-content {
+    -fx-background-color: #1a1a2e;
+}
+
+.hint-label {
+    -fx-text-fill: #a0a0b0;
+    -fx-font-size: 12px;
+}
+
+.stats-label {
+    -fx-text-fill: #7ec8e3;
+    -fx-font-size: 12px;
+}
+
+/* ---- Buttons ------------------------------------------ */
+.btn-primary {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 6;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1a4f8a;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #0a2240;
+}
+
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 6;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #e74c3c;
+}
+
+.btn-secondary {
+    -fx-background-color: #2d3561;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 6;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #3a4587;
+}
+
+/* ---- Lists / tables ----------------------------------- */
+.app-list {
+    -fx-background-color: #16213e;
+    -fx-border-color: #0f3460;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #e0e0e0;
+}
+
+.app-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 6 12 6 12;
+}
+
+.app-list .list-cell:selected {
+    -fx-background-color: #0f3460;
+}
+
+.log-table {
+    -fx-background-color: #16213e;
+    -fx-border-color: #0f3460;
+    -fx-border-radius: 6;
+}
+
+.log-table .column-header-background {
+    -fx-background-color: #0f3460;
+}
+
+.log-table .column-header .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.log-table .table-row-cell {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #e0e0e0;
+}
+
+.log-table .table-row-cell:selected {
+    -fx-background-color: #0f3460;
+}
+
+.log-table .table-row-cell:odd {
+    -fx-background-color: #1a2550;
+}
+
+/* ---- Form controls ------------------------------------ */
+.text-field, .password-field, .pin-field {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #0f3460;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10 6 10;
+    -fx-prompt-text-fill: #555577;
+}
+
+.text-field:focused, .password-field:focused, .pin-field:focused {
+    -fx-border-color: #e94560;
+}
+
+/* ---- Status labels ------------------------------------ */
+.status-label  { -fx-font-size: 12px; }
+.status-ok     { -fx-text-fill: #27ae60; }
+.status-error  { -fx-text-fill: #e74c3c; }
+
+/* ---- Titled pane -------------------------------------- */
+.titled-pane > .title {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #7ec8e3;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #1e2a50;
+    -fx-border-color: #0f3460;
+}
+
+/* =========================================================
+   Lock Screen Overlay
+   ========================================================= */
+
+.lock-root {
+    -fx-background-color: rgba(10, 10, 20, 0.95);
+}
+
+.lock-icon {
+    -fx-font-size: 64px;
+}
+
+.lock-title {
+    -fx-fill: #e94560;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.lock-app-name {
+    -fx-text-fill: #a0a0c0;
+    -fx-font-size: 16px;
+}
+
+.camera-view {
+    -fx-border-color: #0f3460;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.lock-status {
+    -fx-text-fill: #7ec8e3;
+    -fx-font-size: 14px;
+}
+
+.lock-spinner {
+    -fx-progress-color: #0f3460;
+}
+
+/* =========================================================
+   Progress bar
+   ========================================================= */
+.progress-bar > .bar {
+    -fx-background-color: #0f3460;
+    -fx-background-radius: 4;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #16213e;
+    -fx-background-radius: 4;
+}
