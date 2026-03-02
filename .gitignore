@@ -1,0 +1,28 @@
+# Maven build outputs
+target/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+*.class
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Bundled JRE (large – instruct users to generate via jlink)
+jre/
+
+# Local OpenCV native extract cache
+*.dll
+*.so
+*.dylib
+
+# Log files
+*.log
+logs/
