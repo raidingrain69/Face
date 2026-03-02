@@ -109,7 +109,7 @@ FaceUnlocker/
 ### 1. Clone & compile
 
 ```bash
-git clone https://github.com/your-org/face-unlocker.git
+git clone https://github.com/raidingrain69/Face.git
 cd face-unlocker
 mvn clean package -DskipTests
 ```
