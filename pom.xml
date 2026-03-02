@@ -17,7 +17,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>21.0.2</javafx.version>
-        <opencv.version>4.9.0-0</opencv.version>
+        <javacv.version>1.5.11</javacv.version>
         <jna.version>5.14.0</jna.version>
         <gson.version>2.10.1</gson.version>
         <slf4j.version>2.0.9</slf4j.version>
@@ -45,11 +45,11 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- OpenCV (includes native libs + face module via openpnp bundle) -->
+        <!-- JavaCV platform bundle (includes OpenCV + opencv_contrib face module) -->
         <dependency>
-            <groupId>org.openpnp</groupId>
-            <artifactId>opencv</artifactId>
-            <version>${opencv.version}</version>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>${javacv.version}</version>
         </dependency>
 
         <!-- JNA for Windows API (process monitoring, Win32 calls) -->

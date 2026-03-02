@@ -30,8 +30,9 @@
         <appender-ref ref="FILE"/>
     </root>
 
-    <!-- Suppress verbose OpenCV / JNA debug output -->
-    <logger name="com.sun.jna"   level="WARN"/>
-    <logger name="org.opencv"    level="WARN"/>
+    <!-- Suppress verbose OpenCV / JavaCV / JNA debug output -->
+    <logger name="com.sun.jna"        level="WARN"/>
+    <logger name="org.bytedeco"       level="WARN"/>
+    <logger name="org.opencv"         level="WARN"/>
 
 </configuration>
