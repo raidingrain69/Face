@@ -1,197 +1,209 @@
 /* =========================================================
    AI Face Unlocker – Main Stylesheet
-   Dark-theme with blue accents
+   Clean dark theme with high-contrast accents
    ========================================================= */
 
 /* Root / body */
 .root {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: #1e1e2e;
     -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #e0e0e0;
+    -fx-text-fill: #cdd6f4;
 }
 
 /* ---- Dashboard ----------------------------------------- */
 .dashboard-root {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: #1e1e2e;
 }
 
 .header {
-    -fx-background-color: #16213e;
-    -fx-border-color: transparent transparent #0f3460 transparent;
+    -fx-background-color: #181825;
+    -fx-border-color: transparent transparent #45475a transparent;
     -fx-border-width: 0 0 1 0;
 }
 
 .header-title {
-    -fx-fill: #e94560;
+    -fx-fill: #cba6f7;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
 }
 
 .header-subtitle {
-    -fx-fill: #7f8c8d;
+    -fx-fill: #6c7086;
     -fx-font-size: 12px;
 }
 
 /* ---- Tab pane ------------------------------------------ */
 .main-tabs {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: #1e1e2e;
     -fx-tab-min-width: 180px;
 }
 
 .main-tabs .tab-header-area .tab-header-background {
-    -fx-background-color: #16213e;
+    -fx-background-color: #181825;
 }
 
 .main-tabs .tab {
-    -fx-background-color: #16213e;
-    -fx-text-fill: #a0a0b0;
+    -fx-background-color: #181825;
+    -fx-text-fill: #a6adc8;
     -fx-font-size: 13px;
     -fx-padding: 8 16 8 16;
 }
 
 .main-tabs .tab:selected {
-    -fx-background-color: #0f3460;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #313244;
+    -fx-text-fill: #cdd6f4;
 }
 
 .main-tabs .tab-content-area {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: #1e1e2e;
 }
 
 /* ---- Tab content -------------------------------------- */
 .tab-content {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: #1e1e2e;
 }
 
 .hint-label {
-    -fx-text-fill: #a0a0b0;
+    -fx-text-fill: #a6adc8;
     -fx-font-size: 12px;
 }
 
 .stats-label {
-    -fx-text-fill: #7ec8e3;
+    -fx-text-fill: #89dceb;
     -fx-font-size: 12px;
 }
 
 /* ---- Buttons ------------------------------------------ */
 .btn-primary {
-    -fx-background-color: #0f3460;
+    -fx-background-color: #7c3aed;
     -fx-text-fill: #ffffff;
     -fx-background-radius: 6;
     -fx-padding: 8 18 8 18;
     -fx-cursor: hand;
     -fx-font-weight: bold;
+    -fx-font-size: 13px;
 }
 
 .btn-primary:hover {
-    -fx-background-color: #1a4f8a;
+    -fx-background-color: #6d28d9;
 }
 
 .btn-primary:pressed {
-    -fx-background-color: #0a2240;
+    -fx-background-color: #5b21b6;
 }
 
 .btn-danger {
-    -fx-background-color: #c0392b;
+    -fx-background-color: #ef4444;
     -fx-text-fill: #ffffff;
     -fx-background-radius: 6;
     -fx-padding: 8 18 8 18;
     -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
 }
 
 .btn-danger:hover {
-    -fx-background-color: #e74c3c;
+    -fx-background-color: #dc2626;
+}
+
+.btn-danger:pressed {
+    -fx-background-color: #b91c1c;
 }
 
 .btn-secondary {
-    -fx-background-color: #2d3561;
-    -fx-text-fill: #e0e0e0;
+    -fx-background-color: #45475a;
+    -fx-text-fill: #cdd6f4;
     -fx-background-radius: 6;
     -fx-padding: 8 18 8 18;
     -fx-cursor: hand;
+    -fx-font-size: 13px;
 }
 
 .btn-secondary:hover {
-    -fx-background-color: #3a4587;
+    -fx-background-color: #585b70;
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: #313244;
 }
 
 /* ---- Lists / tables ----------------------------------- */
 .app-list {
-    -fx-background-color: #16213e;
-    -fx-border-color: #0f3460;
+    -fx-background-color: #181825;
+    -fx-border-color: #45475a;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
-    -fx-text-fill: #e0e0e0;
+    -fx-text-fill: #cdd6f4;
 }
 
 .app-list .list-cell {
     -fx-background-color: transparent;
-    -fx-text-fill: #e0e0e0;
+    -fx-text-fill: #cdd6f4;
     -fx-padding: 6 12 6 12;
 }
 
 .app-list .list-cell:selected {
-    -fx-background-color: #0f3460;
+    -fx-background-color: #45475a;
 }
 
 .log-table {
-    -fx-background-color: #16213e;
-    -fx-border-color: #0f3460;
+    -fx-background-color: #181825;
+    -fx-border-color: #45475a;
     -fx-border-radius: 6;
 }
 
 .log-table .column-header-background {
-    -fx-background-color: #0f3460;
+    -fx-background-color: #313244;
 }
 
 .log-table .column-header .label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #cdd6f4;
     -fx-font-weight: bold;
 }
 
 .log-table .table-row-cell {
-    -fx-background-color: #16213e;
-    -fx-text-fill: #e0e0e0;
+    -fx-background-color: #181825;
+    -fx-text-fill: #cdd6f4;
 }
 
 .log-table .table-row-cell:selected {
-    -fx-background-color: #0f3460;
+    -fx-background-color: #45475a;
 }
 
 .log-table .table-row-cell:odd {
-    -fx-background-color: #1a2550;
+    -fx-background-color: #1e1e2e;
 }
 
 /* ---- Form controls ------------------------------------ */
 .text-field, .password-field, .pin-field {
-    -fx-background-color: #16213e;
-    -fx-text-fill: #e0e0e0;
-    -fx-border-color: #0f3460;
+    -fx-background-color: #181825;
+    -fx-text-fill: #cdd6f4;
+    -fx-border-color: #45475a;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
     -fx-padding: 6 10 6 10;
-    -fx-prompt-text-fill: #555577;
+    -fx-prompt-text-fill: #6c7086;
 }
 
 .text-field:focused, .password-field:focused, .pin-field:focused {
-    -fx-border-color: #e94560;
+    -fx-border-color: #7c3aed;
 }
 
 /* ---- Status labels ------------------------------------ */
 .status-label  { -fx-font-size: 12px; }
-.status-ok     { -fx-text-fill: #27ae60; }
-.status-error  { -fx-text-fill: #e74c3c; }
+.status-ok     { -fx-text-fill: #a6e3a1; }
+.status-error  { -fx-text-fill: #f38ba8; }
 
 /* ---- Titled pane -------------------------------------- */
 .titled-pane > .title {
-    -fx-background-color: #16213e;
-    -fx-text-fill: #7ec8e3;
+    -fx-background-color: #313244;
+    -fx-text-fill: #89dceb;
 }
 
 .titled-pane > .content {
-    -fx-background-color: #1e2a50;
-    -fx-border-color: #0f3460;
+    -fx-background-color: #181825;
+    -fx-border-color: #45475a;
 }
 
 /* =========================================================
@@ -207,41 +219,41 @@
 }
 
 .lock-title {
-    -fx-fill: #e94560;
+    -fx-fill: #cba6f7;
     -fx-font-size: 28px;
     -fx-font-weight: bold;
 }
 
 .lock-app-name {
-    -fx-text-fill: #a0a0c0;
+    -fx-text-fill: #a6adc8;
     -fx-font-size: 16px;
 }
 
 .camera-view {
-    -fx-border-color: #0f3460;
+    -fx-border-color: #45475a;
     -fx-border-width: 2;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
 }
 
 .lock-status {
-    -fx-text-fill: #7ec8e3;
+    -fx-text-fill: #89dceb;
     -fx-font-size: 14px;
 }
 
 .lock-spinner {
-    -fx-progress-color: #0f3460;
+    -fx-progress-color: #7c3aed;
 }
 
 /* =========================================================
    Progress bar
    ========================================================= */
 .progress-bar > .bar {
-    -fx-background-color: #0f3460;
+    -fx-background-color: #7c3aed;
     -fx-background-radius: 4;
 }
 
 .progress-bar > .track {
-    -fx-background-color: #16213e;
+    -fx-background-color: #313244;
     -fx-background-radius: 4;
 }

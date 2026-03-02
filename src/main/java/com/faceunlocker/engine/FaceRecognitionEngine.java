@@ -129,6 +129,9 @@ public class FaceRecognitionEngine {
      * @return list of detected face regions (may be empty).
      */
     public List<Rect> detectFaces(Mat frame) {
+        if (detector == null || detector.empty()) {
+            return Collections.emptyList();
+        }
         Mat grey = new Mat();
         cvtColor(frame, grey, COLOR_BGR2GRAY);
         equalizeHist(grey, grey);
