@@ -3,9 +3,9 @@ package com.faceunlocker.engine;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
-import org.opencv.videoio.Videoio;
+import org.bytedeco.opencv.opencv_core.Mat;
+import org.bytedeco.opencv.opencv_videoio.VideoCapture;
+import static org.bytedeco.opencv.global.opencv_videoio.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,8 +68,8 @@ public class CameraCapture {
         this.frameCallback = frameCallback;
 
         capture = new VideoCapture(cameraIndex);
-        capture.set(Videoio.CAP_PROP_FRAME_WIDTH,  640);
-        capture.set(Videoio.CAP_PROP_FRAME_HEIGHT, 480);
+        capture.set(CAP_PROP_FRAME_WIDTH,  640);
+        capture.set(CAP_PROP_FRAME_HEIGHT, 480);
 
         if (!capture.isOpened()) {
             throw new IllegalStateException(
@@ -154,8 +154,10 @@ public class CameraCapture {
         int height = bgr.rows();
         int channels = bgr.channels();
 
-        byte[] pixels = new byte[width * height * channels];
-        bgr.get(0, 0, pixels);
+        byte[] pixels = new byte[(int) (bgr.total() * bgr.channels())];
+        try (org.bytedeco.javacpp.BytePointer data = bgr.data()) {
+            data.get(pixels);
+        }
 
         BufferedImage buf = new BufferedImage(width, height,
                 channels == 3 ? BufferedImage.TYPE_3BYTE_BGR

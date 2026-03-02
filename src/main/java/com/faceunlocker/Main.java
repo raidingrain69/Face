@@ -1,12 +1,13 @@
 package com.faceunlocker;
 
-import org.opencv.core.Core;
+import org.bytedeco.javacpp.Loader;
+import org.bytedeco.opencv.global.opencv_core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Application entry point.
- * Loads the OpenCV native library, then launches the JavaFX application.
+ * Loads the OpenCV native library via JavaCPP, then launches the JavaFX application.
  * Separating main() from the JavaFX Application class is required by
  * the JavaFX launcher when packaging as a fat JAR.
  */
@@ -15,10 +16,10 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        // Load OpenCV native library bundled by org.openpnp:opencv
+        // Load OpenCV native libraries via JavaCPP Loader
         try {
-            nu.pattern.OpenCV.loadLocally();
-            log.info("OpenCV {} loaded successfully", Core.VERSION);
+            Loader.load(opencv_core.class);
+            log.info("OpenCV {} loaded successfully", opencv_core.CV_VERSION);
         } catch (Exception e) {
             log.error("Failed to load OpenCV native library", e);
             System.exit(1);
